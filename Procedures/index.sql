@@ -21,3 +21,11 @@ CREATE PROCEDURE `0_Usrs_ToList`()
 SELECT * FROM `0_Usrs`;
 # <.STORED PROCEDURE> 
 
+# <STORED PROCEDURE>
+CREATE PROCEDURE `0_Login`(
+    `_Usrnm`  VARCHAR(20),
+    `_Psswrd` VARCHAR(255)   
+)
+SELECT * FROM `0_Usrs` WHERE `Usrnm` = `_Usrnm` AND `Psswrd` = `_Psswrd`;
+# <.STORED PROCEDURE> 
+
