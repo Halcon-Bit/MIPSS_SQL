@@ -232,3 +232,77 @@ INSERT INTO `MIPSS_`.`0_TypsPrsns` (`Rfrnc`, `Nm`, `Dscrptn`, `Rfrnc_TypsPrsns`,
 INSERT INTO `MIPSS_`.`0_TypsPrsns` (`Rfrnc`, `Nm`, `Dscrptn`, `Rfrnc_TypsPrsns`, `Cndtn`, `Rmvd`, `Lckd`, `DtAdmssn`, `ChckTm`) VALUES (NULL, 'Cstmr', 'English: Customer / Spanish: Cliente'  ,    2, 1, 0, 0, "0001-01-01", "00:00:00");
 # </TIPOS DE PERSONAS: INSERTAR DATOS>
 # <.ENGLISH: MASTER TABLE / SPANISH: TABLA MAESTRA>
+
+# <ENGLISH: MASTER TABLE / SPANISH: TABLA MAESTRA>
+# <ENGLISH: CLASSIFICATION OF PERSON/ SPANISH: CLASIFICACIÓN DE PERSONAS>
+# Rfrnc_TypsPrsn > Rfrnc_TypsPrsn [0_TypsPrsn]
+CREATE TABLE IF NOT EXISTS `MIPSS_`.`0_ClsfctnPrsn` (
+    `Rfrnc`          INT(255) NOT NULL AUTO_INCREMENT  COMMENT 'Rfrnc           (English: Reference                                                                                                                             / Spanish: Referencia)',
+    `Rfrnc_Prsn`     INT(255) NOT NULL                 COMMENT 'Rfrnc_Prsn      (English: Reference. Person [0_Prsn]                                                                                                            / Spanish: Referencia. Persona [0_Prsn])',
+    `Rfrnc_TpsPrsns` INT(255) NOT NULL                 COMMENT 'Rfrnc_TpsPrsns  (English: Reference. Types of Person [1: Naturale - {3: Provider, 4: Customer} | 2: Legal - {5: Providor, 5: Customer}]                         / Spanish: Referencia. Tipos de Personas [1: Natural - {3: Proveedor, 4: Cliente} | 2: Jurídico - {5: Proveedor, 6: Cliente}])',
+    `Cndtn`          INT  (2) NOT NULL                 COMMENT 'Cndtn           (English: Condition                  [0: Inactive, 1: Active]                                                                                   / Spanish: Estado                        [0: Inactivo, 1: Activo])',
+    `Rmvd`           INT  (2) NOT NULL                 COMMENT 'Rmvd            (English: Removed                    [0: Inactive, 1: Active]                                                                                   / Spanish: Eliminado                     [0: Inactivo, 1: Activo])',
+    `Lckd`           INT  (2) NOT NULL                 COMMENT 'Lckd            (English: Locked                     [0: Inactive, 1: Active]                                                                                   / Spanish: Bloqueado                     [0: Inactivo, 1: Activo])',
+    `DtAdmssn`       DATE         NULL                 COMMENT 'DtAdmssn        (English: Date of Admission                                                                                                                     / Spanish: Fecha de Ingreso)',
+    `ChckTm`         TIME         NULL                 COMMENT 'ChckTm          (English: Check In Time                                                                                                                         / Spanish: Hora de Ingreso)', 
+    PRIMARY KEY (`Rfrnc`)
+) ENGINE='MyISAM' DEFAULT CHARSET='utf8' COLLATE='utf8_bin' COMMENT='0_ClsfctnPrsn (English: Classification of person [00: Provider, 01: Customer] / Spanish 0 - Clasificación de Personas [00: Proveedor, 01: Cliente])';
+# <.ENGLISH: CLASSIFICATION OF PERSON/ SPANISH: CLASIFICACIÓN DE PERSONAS>
+# <.ENGLISH: MASTER TABLE / SPANISH: TABLA MAESTRA>
+
+# <ENGLISH: NATURAL PERSON / SPANISH: PERSONAS NATURALES>
+CREATE TABLE IF NOT EXISTS `MIPSS_`.`0_NtrlPrsn` (
+    `Rfrnc`         INT    (255) NOT NULL AUTO_INCREMENT COMMENT 'Rfrnc         (English: Reference                          / Spanish: Referencia)',
+    `Rfrnc_Ncnlty`  INT    (255) NOT NULL                COMMENT 'Rfrnc_Ncnlty  (English: Reference. Nacionality             / Spanish: Referencia. Nacionalidad)',
+    `Rfrnc_Cntry`   INT    (255) NOT NULL                COMMENT 'Rfrnc_Cntry   (English: Reference. Country                 / Spanish: Referencia. Pais)',
+    `IdntfctnDcmnt` VARCHAR(45)  NOT NULL                COMMENT 'IdntfctnDcmnt (English: Identification Document            / Spanish: Documento de Idetentidad)',
+    `Nms`           VARCHAR(35)  NOT NULL                COMMENT 'Nms           (English: Names                              / Spanish: Nombres)',
+    `Srnms`         VARCHAR(35)  NOT NULL                COMMENT 'Srnms         (English: Surnames                           / Spanish: Apellidos)',
+    `RfrntlPhnNmbr` VARCHAR(20)  NOT NULL                COMMENT 'RfrntlPhnNmbr (English: Referential Phone Number           / Spanish: Número de Teléfono Referencial)',
+    `TxAddrss`      TEXT         NOT NULL                COMMENT 'TxAddrss      (English: Tax Address                        / Spanish: Domicilio Fiscal)',
+    `Cndtn`         INT    (2)   NOT NULL                COMMENT 'Cndtn         (English: Condition [0: Inactive, 1: Active] / Spanish: Estado    [0: Inactivo, 1: Activo])',
+    `Rmvd`          INT    (2)   NOT NULL                COMMENT 'Rmvd          (English: Removed   [0: Inactive, 1: Active] / Spanish: Eliminado [0: Inactivo, 1: Activo])',
+    `Lckd`          INT    (2)   NOT NULL                COMMENT 'Lckd          (English: Locked    [0: Inactive, 1: Active] / Spanish: Bloqueado [0: Inactivo, 1: Activo])',
+    `DtAdmssn`      DATE             NULL                COMMENT 'DtAdmssn      (English: Date of Admission                  / Spanish: Fecha de Ingreso)',
+    `ChckTm`        TIME             NULL                COMMENT 'ChckTm        (English: Check In Time                      / Spanish: Hora de Ingreso)', 
+    PRIMARY KEY (`Rfrnc`)
+) ENGINE='MyISAM' DEFAULT CHARSET='utf8' COLLATE='utf8_bin' COMMENT='0_NtrlPrsn (English: 0 - Natural Person / Spanish: 0 - Personas Naturales)';
+# <.ENGLISH: NATURAL PERSON / SPANISH: PERSONAS NATURALES>
+
+# <ENGLISH: LEGAL PERSONS / SPANISH: PERSONAS JURÍDICAS>
+CREATE TABLE IF NOT EXISTS `MIPSS_`.`0_LglPrsns` (
+    `Rfrnc`         INT    (255) NOT NULL AUTO_INCREMENT COMMENT 'Rfrnc         (English: Reference                          / Spanish: Referencia)',
+    `Rfrnc_Ncnlty`  INT    (255) NOT NULL                COMMENT 'Rfrnc_Ncnlty  (English: Reference. Nacionality             / Spanish: Referencia. Nacionalidad)',
+    `Rfrnc_Cntry`   INT    (255) NOT NULL                COMMENT 'Rfrnc_Cntry   (English: Reference. Country                 / Spanish: Referencia. Pais)',
+    `TxIdntfctn`    VARCHAR(45)  NOT NULL                COMMENT 'TxIdntfctn    (English: Tax Identification                 / Spanish: Identificación Tributario)',
+    `RfrntlPhnNmbr` VARCHAR(20)  NOT NULL                COMMENT 'RfrntlPhnNmbr (English: Referential Phone Number           / Spanish: Número de Teléfono Referencial)',
+    `TxAddrss`      TEXT         NOT NULL                COMMENT 'TxAddrss      (English: Tax Address                        / Spanish: Domicilio Fiscal)',
+    `Cndtn`         INT    (2)   NOT NULL                COMMENT 'Cndtn         (English: Condition [0: Inactive, 1: Active] / Spanish: Estado    [0: Inactivo, 1: Activo])',
+    `Rmvd`          INT    (2)   NOT NULL                COMMENT 'Rmvd          (English: Removed   [0: Inactive, 1: Active] / Spanish: Eliminado [0: Inactivo, 1: Activo])',
+    `Lckd`          INT    (2)   NOT NULL                COMMENT 'Lckd          (English: Locked    [0: Inactive, 1: Active] / Spanish: Bloqueado [0: Inactivo, 1: Activo])',
+    `DtAdmssn`      DATE             NULL                COMMENT 'DtAdmssn      (English: Date of Admission                  / Spanish: Fecha de Ingreso)',
+    `ChckTm`        TIME             NULL                COMMENT 'ChckTm        (English: Check In Time                      / Spanish: Hora de Ingreso)', 
+    PRIMARY KEY (`Rfrnc`)
+) ENGINE='MyISAM' DEFAULT CHARSET='utf8' COLLATE='utf8_bin' COMMENT='0_LglPrsns (English: Legal Persons / Spanish: 0 - Personas Jurídicas)';
+# <.ENGLISH: LEGAL PERSONS / SPANISH: PERSONAS JURÍDICAS>
+
+# --------- <.ENGLISH: MODULE. PERSONS / SPANISH: MÓDULO: PERSONAS> ----------- #
+
+# <ENGLISH: MASTER TABLE / SPANISH: TABLA MAESTRA>
+# <ENGLISH: DOCUMENTS / SPANISH: DOCUMENTOS>
+# Rfrnc_Dcmnts > Rfrnc [0_Dcmnts]
+# Enlc_Dcmnts > Rfrnc_Dcmnts [0_Dcmnts]
+CREATE TABLE IF NOT EXISTS `MIPSS_`.`0_Dcmnts` (
+    `Rfrnc`        INT    (255) NOT NULL AUTO_INCREMENT COMMENT 'Rfrnc        (English: Reference                          / Spanish: Referencia)',
+    `Nm`           VARCHAR(20)  NOT NULL                COMMENT 'Nm           (English: Name                               / Spanish: Nombre)',
+    `Dscrptn`      TEXT         NOT NULL                COMMENT 'Dscrptn      (English: Description                        / Spanish: Descripción)',
+    `Rfrnc_Dcmnts` INT    (255)     NULL                COMMENT 'Rfrnc_Dcmnts (English: Reference. Documents               / Spanish: Referencia. Documentos)',
+    `Lnk_Dcmnts`   INT    (255)     NULL                COMMENT 'Lnk_Dcmnts   (English: Link. Documents                    / Spanish: Enlace. Documentos)',
+    `Cndtn`        INT    (2)   NOT NULL                COMMENT 'Cndtn        (English: Condition [0: Inactive, 1: Active] / Spanish: Estado    [0: Inactivo, 1: Activo])',
+    `Rmvd`         INT    (2)   NOT NULL                COMMENT 'Rmvd         (English: Removed   [0: Inactive, 1: Active] / Spanish: Eliminado [0: Inactivo, 1: Activo])',
+    `Lckd`         INT    (2)   NOT NULL                COMMENT 'Lckd         (English: Locked    [0: Inactive, 1: Active] / Spanish: Bloqueado [0: Inactivo, 1: Activo])',
+    `DtAdmssn`     DATE             NULL                COMMENT 'DtAdmssn     (English: Date of Admission                  / Spanish: Fecha de Ingreso)',
+    `ChckTm`       TIME             NULL                COMMENT 'ChckTm       (English: Check In Time                      / Spanish: Hora de Ingreso)', 
+    PRIMARY KEY (`Rfrnc`)
+) ENGINE='MyISAM' DEFAULT CHARSET='utf8' COLLATE='utf8_bin' COMMENT='0_Dcmnts (English: Documents / Spanish: 0 - Documentos)';
+# <.ENGLISH: DOCUMENTS / SPANISH: DOCUMENTOS>
