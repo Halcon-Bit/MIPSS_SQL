@@ -402,7 +402,7 @@ CREATE TABLE IF NOT EXISTS `MIPSS_`.`0_PrdctCds` (
     `DtAdmssn`    DATE             NULL                COMMENT 'DtAdmssn    (English: Date of Admission                  / Spanish: Fecha de Ingreso)',
     `ChckTm`      TIME             NULL                COMMENT 'ChckTm      (English: Check In Time                      / Spanish: Hora de Ingreso)', 
     PRIMARY KEY (`Rfrnc`)
-) ENGINE='MyISAM' DEFAULT CHARSET='utf8' COLLATE='utf8_bin' COMMENT='0_CdgsPrdcts (0 - Códigos de Productos)';
+) ENGINE='MyISAM' DEFAULT CHARSET='utf8' COLLATE='utf8_bin' COMMENT='0_PrdctCds (English: 0 - Product Codes / Spanish: 0 - Códigos de Productos)';
 # <.ENGLISH: MODULE. PRODUCTS / SPANISH: MÓDULO. PRODUCTOS>
 # <.ENGLISH: MASTER TABLE / SPANISH: TABLA MAESTRA>
 # --------- <.ENGLISH: MODULE. PRODUCT CODES / SPANISH: MÓDULO. CÓDIGOS DE PRODUCTOS> ----------- #
