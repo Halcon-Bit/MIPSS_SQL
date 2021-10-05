@@ -587,7 +587,7 @@ CREATE TABLE IF NOT EXISTS `MIPSS_`.`0_Prcntg` (
 # --------- <MÓDULO: ENGLISH: SALES INVOICES / SPANISH: FACTURAS DE VENTAS> ----------- #
 
 # <ENGLISH: MASTER TABLE / SPANISH: TABLA MAESTRA>
-# <ENGLISH: SALES INVOICES. CANCELED / SPANISH: ENGLISH: SALES INVOICES / SPANISH: FACTURAS DE VENTAS. ANULADAS>
+# <ENGLISH: SALES INVOICES. CANCELED / SPANISH: FACTURAS DE VENTAS. ANULADAS>
 CREATE TABLE IF NOT EXISTS `MIPSS_`.`0_SlsInvcsCncld` (
     `Rfrnc`     INT    (255) NOT NULL AUTO_INCREMENT COMMENT 'Rfrnc        (English: Reference                          / Spanish: Referencia)',
     `CnclltnDt` DATE         NOT NULL                COMMENT 'CnclltnDt    (English: Cancellation Date                  / Spanish: Fecha de Anulación)',
@@ -599,7 +599,7 @@ CREATE TABLE IF NOT EXISTS `MIPSS_`.`0_SlsInvcsCncld` (
     `ChckTm`    TIME             NULL                COMMENT 'ChckTm       (English: Check In Time                      / Spanish: Hora de Ingreso)',  
     PRIMARY KEY (`Rfrnc`)
 ) ENGINE='MyISAM' DEFAULT CHARSET='utf8' COLLATE='utf8_bin' COMMENT='0_SlsInvcsCncld (English: 0 - Sales Invoices. Canceled / Spanish: 0 - Facturas de Ventas. Anuladas)';
-# <.ENGLISH: SALES INVOICES. CANCELED / SPANISH: ENGLISH: SALES INVOICES / SPANISH: FACTURAS DE VENTAS. ANULADAS>
+# <.ENGLISH: SALES INVOICES. CANCELED / SPANISH: FACTURAS DE VENTAS. ANULADAS>
 # <.ENGLISH: MASTER TABLE / SPANISH: TABLA MAESTRA>
 
 # <ENGLISH: TRANSACTION TABLE / SPANISH: TABLA TRANSACCIONAL>
@@ -639,3 +639,60 @@ CREATE TABLE IF NOT EXISTS `MIPSS_`.`0_OrdrSlsInvc` (
     PRIMARY KEY (`Rfrnc`)
 ) ENGINE='MyISAM' DEFAULT CHARSET='utf8' COLLATE='utf8_bin' COMMENT='0_OrdrSlsInvc (English: 0 - Order. Sales Invoice / Spanish: 0 - Orden. Facturas de Ventas)';
 # <.ENGLISH: ORDER. SALES INVOICE / SPANISH: ORDEN. FACTURA DE VENTAS>
+
+# <ENGLISH: SOLD PRODUCTS / SPANISH: PRODUCTOS VENDIDOS>
+CREATE TABLE IF NOT EXISTS `MIPSS_`.`0_SldPrdcts` (
+    `Rfrnc`         INT    (255) NOT NULL AUTO_INCREMENT COMMENT 'Rfrnc         (English: Reference                          / Spanish: Referencia)',
+    `Rfrnc_Prsn`    INT    (255) NOT NULL                COMMENT 'Rfrnc_Prsn    (English: Reference. Person                  / Spanish: Referencia. Persona)',
+    `Rfrnc_PrdctSl` INT    (255) NOT NULL                COMMENT 'Rfrnc_Prdct   (English: Reference. Product for Sale        / Spanish: Referencia. Producto en Venta)',
+    `Rfrnc_SlsInvc` INT    (255) NOT NULL                COMMENT 'Rfrnc_SlsInvc (English: Reference. Sales Invoice           / Spanish: Referencia. Factura de Venta)',
+    `Qntty`         BIGINT (255) NOT NULL                COMMENT 'Qntty         (English: Quantity                           / Spanish: Cantidad)',
+    `UntPrc_Prvdr`  CHAR   (2)   NOT NULL                COMMENT 'UntPrc_Prvdr  (English: Unit Price. Provider               / Spanish: Precio Unitario. Proveedor)',    
+    `Rfrnc_Prcntg`  INT    (255) NOT NULL                COMMENT 'Rfrnc_Prcntg  (English: Reference. Porcentage              / Spanish: Referencia. Porcentaje)',
+    `Cndtn`         INT    (2)   NOT NULL                COMMENT 'Cndtn         (English: Condition [0: Inactive, 1: Active] / Spanish: Estado    [0: Inactivo, 1: Activo])',
+    `Rmvd`          INT    (2)   NOT NULL                COMMENT 'Rmvd          (English: Removed   [0: Inactive, 1: Active] / Spanish: Eliminado [0: Inactivo, 1: Activo])',
+    `Lckd`          INT    (2)   NOT NULL                COMMENT 'Lckd          (English: Locked    [0: Inactive, 1: Active] / Spanish: Bloqueado [0: Inactivo, 1: Activo])',
+    `DtAdmssn`      DATE             NULL                COMMENT 'DtAdmssn      (English: Date of Admission                  / Spanish: Fecha de Ingreso)',
+    `ChckTm`        TIME             NULL                COMMENT 'ChckTm        (English: Check In Time                      / Spanish: Hora de Ingreso)', 
+    PRIMARY KEY (`Rfrnc`)
+) ENGINE='MyISAM' DEFAULT CHARSET='utf8' COLLATE='utf8_bin' COMMENT='0_SldPrdcts (English: 0 - Sold Products / Spanish: 0 - Productos Vendidos)';
+# <.ENGLISH: SOLD PRODUCTS / SPANISH: PRODUCTOS VENDIDOS>
+
+# <ENGLISH: PAYMENT METHOD. CUSTOMER SALES INVOICE / SPANISH: FORMA DE PAGO: FACTURA DE VENTAS DEL CLIENTE>
+CREATE TABLE IF NOT EXISTS `MIPSS_`.`0_PymntMthdCstmrSlsInvc` (
+    `Rfrnc`           INT    (255) NOT NULL AUTO_INCREMENT COMMENT 'Rfrnc         (English: Reference                          / Spanish: Referencia)',
+    `Rfrnc_PrchsInvc` INT    (255) NOT NULL                COMMENT 'PrchsInvc     (English: Reference. Purchase Invoice        / Spanish: Referencia. Factura de Compra)',
+    `InvcTyp`         INT    (10)  NOT NULL                COMMENT 'InvcTyp       (English: Invoice Type                       / Spanish: Tipo de Factura)',
+    `Csh`             INT    (1)   NOT NULL                COMMENT 'Csh           (English: Cash                               / Spanish: Efectivo)',
+    `Othrs`           INT    (1)   NOT NULL                COMMENT 'Othrs         (English: Others                             / Spanish: Otros)',
+    `Othrs_Dtls`      VARCHAR(40)  NOT NULL                COMMENT 'Othrs_Dtls    (English: Others. Details                    / Spanish: Otros. Detalles)',
+    `ChckNmbr`        INT    (1)   NOT NULL                COMMENT 'ChckNmbr      (English: Check Number                       / Spanish: Número de Cheque)',
+    `ChckNmbr_Dtls`   VARCHAR(40)  NOT NULL                COMMENT 'ChckNmbr_Dtls (English: Check Number. Details              / Spanish: Número de Cheque. Detalles)',
+    `Rfrnc_Bnks`      INT    (255) NOT NULL                COMMENT 'Rfrnc_Bnks    (English: Reference. Banks                   / Spanish: Referencia. Bancos)',
+    `Cndtn`           INT    (2)   NOT NULL                COMMENT 'Cndtn         (English: Condition [0: Inactive, 1: Active] / Spanish: Estado    [0: Inactivo, 1: Activo])',
+    `Rmvd`            INT    (2)   NOT NULL                COMMENT 'Rmvd          (English: Removed   [0: Inactive, 1: Active] / Spanish: Eliminado [0: Inactivo, 1: Activo])',
+    `Lckd`            INT    (2)   NOT NULL                COMMENT 'Lckd          (English: Locked    [0: Inactive, 1: Active] / Spanish: Bloqueado [0: Inactivo, 1: Activo])',
+    `DtAdmssn`        DATE             NULL                COMMENT 'DtAdmssn      (English: Date of Admission                  / Spanish: Fecha de Ingreso)',
+    `ChckTm`          TIME             NULL                COMMENT 'ChckTm        (English: Check In Time                      / Spanish: Hora de Ingreso)', 
+    PRIMARY KEY (`Rfrnc`)
+) ENGINE='MyISAM' DEFAULT CHARSET='utf8' COLLATE='utf8_bin' COMMENT='0_PymntMthdCstmrSlsInvc (English: 0 - Payment Method. Customer Sales Invoice / Spanish: 0 - Forma de Pago. Facturas de Ventas)';
+# <.ENGLISH: PAYMENT METHOD. CUSTOMER SALES INVOICE / SPANISH: FORMA DE PAGO: FACTURA DE VENTAS DEL CLIENTE>
+
+# <ENGLISH: AMOUNT. SALES INVOICES / SPANISH: MONTOS. FACTURAS DE VENTAS>
+CREATE TABLE IF NOT EXISTS `MIPSS_`.`0_AmntSlsInvcs` (
+    `Rfrnc`         INT    (255) NOT NULL AUTO_INCREMENT COMMENT 'Rfrnc         (English: Reference                          / Spanish: Referencia)',
+    `Rfrnc_SlsInvc` INT    (255) NOT NULL                COMMENT 'Rfrnc_SlsInvc (English: Reference. Sales Invoice           / Spanish: Referencia. Factura de Venta)',
+    `Sbttl`         VARCHAR(255) NOT NULL                COMMENT 'Sbttl         (English: Subtotal                           / Spanish: Subtotal)',
+    `Tx`            VARCHAR(255) NOT NULL                COMMENT 'Tx            (English: Tax                                / Spanish: Impuesto)',    
+    `TtlTx`         BIGINT (255) NOT NULL                COMMENT 'TtlTx         (English: Total Tax [Subtotal * (Tax / 100)] / Spanish: Total de Impuesto [Subtotal * (Impuesto / 100)])',
+    `Ttl`           CHAR   (2)   NOT NULL                COMMENT 'Ttl           (English: Total                              / Spanish: Total)',
+    `Cndtn`         INT    (2)   NOT NULL                COMMENT 'Cndtn         (English: Condition [0: Inactive, 1: Active] / Spanish: Estado    [0: Inactivo, 1: Activo])',
+    `Rmvd`          INT    (2)   NOT NULL                COMMENT 'Rmvd          (English: Removed   [0: Inactive, 1: Active] / Spanish: Eliminado [0: Inactivo, 1: Activo])',
+    `Lckd`          INT    (2)   NOT NULL                COMMENT 'Lckd          (English: Locked    [0: Inactive, 1: Active] / Spanish: Bloqueado [0: Inactivo, 1: Activo])',
+    `DtAdmssn`      DATE             NULL                COMMENT 'DtAdmssn      (English: Date of Admission                  / Spanish: Fecha de Ingreso)',
+    `ChckTm`        TIME             NULL                COMMENT 'ChckTm        (English: Check In Time                      / Spanish: Hora de Ingreso)', 
+    PRIMARY KEY (`Rfrnc`)
+) ENGINE='MyISAM' DEFAULT CHARSET='utf8' COLLATE='utf8_bin' COMMENT='0_AmntSlsInvcs (English: 0 - Amount. Sales Invoices / Spanish: 0 - Montos. Facturas de Compras)';
+# <.ENGLISH: AMOUNT. SALES INVOICES / SPANISH: MONTOS. FACTURAS DE VENTAS>
+
+# --------- <.ENGLISH: MODULE. SALES INVOICES / SPANISH: MÓDULO. FACTURAS DE VENTAS> ----------- #
