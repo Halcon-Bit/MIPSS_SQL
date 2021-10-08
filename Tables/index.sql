@@ -1,3 +1,5 @@
+# --------- <ENGLISH: MODULE. USERS / SPANISH: MÓDULO. USUARIOS> ----------- #
+
 # <ENGLISH: USERS / SPANISH: USUARIOS>
 CREATE TABLE IF NOT EXISTS `MIPSS_`.`0_Usrs` (
     `Rfrnc`        INT(255)     NOT NULL AUTO_INCREMENT COMMENT 'Rfrnc        (English: Reference                          / Spanish: Referencia)',
