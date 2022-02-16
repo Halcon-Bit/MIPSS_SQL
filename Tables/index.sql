@@ -700,7 +700,7 @@ CREATE TABLE IF NOT EXISTS `MIPSS_`.`0_AmntSlsInvcs` (
 
 # --------- <.ENGLISH: MODULE. SALES INVOICES / SPANISH: MÓDULO. FACTURAS DE VENTAS> ----------- #
 
-# <ENGLISH: AMOUNT. SALES INVOICES / SPANISH: MONTOS. FACTURAS DE VENTAS>
+# <ENGLISH: POSTS / SPANISH: PUBLICACIONES>
 CREATE TABLE IF NOT EXISTS `MIPSS_`.`0_Psts` (
     `Rfrnc`         INT    (255) NOT NULL AUTO_INCREMENT COMMENT 'Rfrnc         (English: Reference                          / Spanish: Referencia)',
     `Rfrnc_Usr`     INT    (255) NOT NULL                COMMENT 'Rfrnc_Prsn    (English: Reference. User                    / Spanish: Referencia. Usuario)',
@@ -713,4 +713,4 @@ CREATE TABLE IF NOT EXISTS `MIPSS_`.`0_Psts` (
     `ChckTm`        TIME             NULL                COMMENT 'ChckTm        (English: Check In Time                      / Spanish: Hora de Ingreso)', 
     PRIMARY KEY (`Rfrnc`)
 ) ENGINE='MyISAM' DEFAULT CHARSET='utf8' COLLATE='utf8_bin' COMMENT='0_Psts (English: 0 - Posts / Spanish: 0 - Publicaciones)';
-# <.ENGLISH: AMOUNT. SALES INVOICES / SPANISH: MONTOS. FACTURAS DE VENTAS>
+# <.ENGLISH: POSTS / SPANISH: PUBLICACIONES>
