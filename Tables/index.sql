@@ -14,6 +14,19 @@ CREATE TABLE IF NOT EXISTS `MIPSS_`.`0_Usrs` (
     `ChckTm`       TIME             NULL                COMMENT 'ChckTm       (English: Check In Time                      / Spanish: Hora de Ingreso)',
     PRIMARY KEY (`Rfrnc`)
 ) ENGINE='InnoDB' DEFAULT CHARSET='utf8' COLLATE='utf8_bin' COMMENT='0_Usrs (English: 0 - Users / Spanish: 0 - Usuarios)';
+
+CREATE TABLE IF NOT EXISTS `MIPSS_`.`0_Users` (
+    `Rfrnc`    INT(255)     NOT NULL AUTO_INCREMENT COMMENT 'Rfrnc        (English: Reference                          / Spanish: Referencia)',
+    `name`     VARCHAR(50)  NOT NULL                COMMENT '',
+    `username` VARCHAR(255) NOT NULL                COMMENT '',
+    `typeuser` INT    (1)   NOT NULL                COMMENT '',
+    `gender`   INT    (1)   NOT NULL                COMMENT '',
+    `email`    VARCHAR(50)  NOT NULL                COMMENT '',
+    `password` VARCHAR(50)  NOT NULL                COMMENT '',
+    `terminos` INT    (1)   NOT NULL                COMMENT '',
+    `edad`     INT    (1)   NOT NULL                COMMENT '',
+    PRIMARY KEY (`Rfrnc`)
+) ENGINE='InnoDB' DEFAULT CHARSET='utf8' COLLATE='utf8_bin' COMMENT='';
 # <0 - USUARIOS: INSERTAR DATOS>
 
 # <.ENGLISH: USERS / SPANISH: USUARIOS>
@@ -381,7 +394,7 @@ CREATE TABLE IF NOT EXISTS `MIPSS_`.`0_PymntMthdPrchsInvc` (
 # <.ENGLISH: PAYMENT METHOD. PURCHASE INVOICE / SPANISH: FORMA DE PAGO. FACTURA DE COMPRAS>
 
 # <ENGLISH: AMOUNTS. PURCHASE INVOICES / SPANISH: MONTOS. FACTURAS DE COMPRAS>
-CREATE TABLE IF NOT EXISTS `MIPSS_`.`0_MntsFctrsCmprs` (
+CREATE TABLE IF NOT EXISTS `MIPSS_`.`0_AmntsPrchsInvcs` (
     `Rfrnc`           INT    (255) NOT NULL AUTO_INCREMENT COMMENT 'Rfrnc     (English: Reference                          / Spanish: Referencia)',
     `Rfrnc_PrchsInvc` INT    (255) NOT NULL                COMMENT 'PrchsInvc (English: Reference. Purchase Invoice        / Spanish: Referencia. Factura de Compra)',
     `Sbttl`           VARCHAR(255) NOT NULL                COMMENT 'Sbttl     (English: Subtotal                           / Spanish: Subtotal)',
@@ -394,7 +407,7 @@ CREATE TABLE IF NOT EXISTS `MIPSS_`.`0_MntsFctrsCmprs` (
     `DtAdmssn`        DATE             NULL                COMMENT 'DtAdmssn  (English: Date of Admission                  / Spanish: Fecha de Ingreso)',
     `ChckTm`          TIME             NULL                COMMENT 'ChckTm    (English: Check In Time                      / Spanish: Hora de Ingreso)', 
     PRIMARY KEY (`Rfrnc`)
-) ENGINE='InnoDB' DEFAULT CHARSET='utf8' COLLATE='utf8_bin' COMMENT='0_MntsFctrsCmprs (English: 0 - Amounts. Purchase Invoices / Spanish: 0 - Montos. Facturas de Compras)';
+) ENGINE='InnoDB' DEFAULT CHARSET='utf8' COLLATE='utf8_bin' COMMENT='0_AmntsPrchsInvcs (English: 0 - Amounts. Purchase Invoices / Spanish: 0 - Montos. Facturas de Compras)';
 # <.ENGLISH: AMOUNTS. PURCHASE INVOICES / SPANISH: MONTOS. FACTURAS DE COMPRAS>
 
 # <ENGLISH: AMOUNTS. PRODUCTS ON SALE / SPANISH: MONTOS. PRODUCTOS EN VENTAS>
