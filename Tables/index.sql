@@ -27,8 +27,32 @@ CREATE TABLE IF NOT EXISTS `MIPSS_`.`0_Users` (
     `edad`     INT    (1)   NOT NULL                COMMENT '',
     PRIMARY KEY (`Rfrnc`)
 ) ENGINE='InnoDB' DEFAULT CHARSET='utf8' COLLATE='utf8_bin' COMMENT='';
-# <0 - USUARIOS: INSERTAR DATOS>
 
+CREATE TABLE IF NOT EXISTS `MIPSS_`.`0_UsrsEmls` (
+    `Rfrnc`        INT(255)     NOT NULL AUTO_INCREMENT COMMENT 'Rfrnc        (English: Reference                          / Spanish: Referencia)',
+    `Rfrnc_Usrs`   INT(255)     NOT NULL                COMMENT 'Rfrnc_Usrs   (English: Reference. Users                   / Spanish: Referencia. Usuarios)',
+    `Eml`          VARCHAR(60)  NOT NULL                COMMENT 'Emls         (English: Emails                             / Spanish: Correo Electrónico)',    
+    `Cndtn`        INT    (2)   NOT NULL                COMMENT 'Cndtn        (English: Condition [0: Inactive, 1: Active] / Spanish: Estado [0: Inactivo, 1: Activo])',
+    `Rmvd`         INT    (2)   NOT NULL                COMMENT 'Rmvd         (English: Removed [0: Inactive, 1: Active]   / Spanish: Eliminado [0: Inactivo, 1: Activo])',
+    `Lckd`         INT    (2)   NOT NULL                COMMENT 'Lckd         (English: Locked [0: Inactive, 1: Active]    / Spanish: Bloqueado [0: Inactivo, 1: Activo])',
+    `DtAdmssn`     DATE             NULL                COMMENT 'DtAdmssn     (English: Date of Admission                  / Spanish: Fecha de Ingreso)',
+    `ChckTm`       TIME             NULL                COMMENT 'ChckTm       (English: Check In Time                      / Spanish: Hora de Ingreso)',
+    PRIMARY KEY (`Rfrnc`)
+) ENGINE='InnoDB' DEFAULT CHARSET='utf8' COLLATE='utf8_bin' COMMENT='0_UsrsEmls (English: 0 - Users Emails / Spanish: 0 - Correos Electrónicos de Usuarios)';
+
+CREATE TABLE IF NOT EXISTS `MIPSS_`.`0_UsrEmlActvtn` (
+    `Rfrnc`           INT(255)     NOT NULL AUTO_INCREMENT COMMENT 'Rfrnc           (English: Reference                          / Spanish: Referencia)',
+    `Rfrnc_Usrs`      INT(255)     NOT NULL                COMMENT 'Rfrnc_Usrs      (English: Reference. Users                   / Spanish: Referencia. Usuarios)',
+    `ActvtnCd_Rndm`   VARCHAR(60)      NULL                COMMENT 'ActvtnCd_Rndm   (English: Activation Code. Random            / Spanish: Código de Activación. Aleatorio)', 
+    `ActvtnCd_MD5`    VARCHAR(256)     NULL                COMMENT 'ActvtnCd_MD5    (English: Activation Code. MD5               / Spanish: Código de Activación. MD5)',     
+    `ActvtnCd_SHA256` VARCHAR(256)     NULL                COMMENT 'ActvtnCd_SHA256 (English: Activation Code. SHA256            / Spanish: Código de Activación. SHA256)',         
+    `Cndtn`           INT    (2)   NOT NULL                COMMENT 'Cndtn           (English: Condition [0: Inactive, 1: Active] / Spanish: Estado [0: Inactivo, 1: Activo])',
+    `Rmvd`            INT    (2)   NOT NULL                COMMENT 'Rmvd            (English: Removed [0: Inactive, 1: Active]   / Spanish: Eliminado [0: Inactivo, 1: Activo])',
+    `Lckd`            INT    (2)   NOT NULL                COMMENT 'Lckd            (English: Locked [0: Inactive, 1: Active]    / Spanish: Bloqueado [0: Inactivo, 1: Activo])',
+    `DtAdmssn`        DATE             NULL                COMMENT 'DtAdmssn        (English: Date of Admission                  / Spanish: Fecha de Ingreso)',
+    `ChckTm`          TIME             NULL                COMMENT 'ChckTm          (English: Check In Time                      / Spanish: Hora de Ingreso)',
+    PRIMARY KEY (`Rfrnc`)
+) ENGINE='InnoDB' DEFAULT CHARSET='utf8' COLLATE='utf8_bin' COMMENT='0_UsrEmlActvtn (English: 0 - User Email Activation / Spanish: 0 - Activación de Correo Electrónico del Usuario)';
 # <.ENGLISH: USERS / SPANISH: USUARIOS>
 
 # <ENGLISH: TYPES OF USERS / SPANISH: TIPOS DE USUARIOS>
