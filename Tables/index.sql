@@ -40,6 +40,21 @@ CREATE TABLE IF NOT EXISTS `MIPSS_`.`0_UsrsEmls` (
     PRIMARY KEY (`Rfrnc`)
 ) ENGINE='InnoDB' DEFAULT CHARSET='utf8' COLLATE='utf8_bin' COMMENT='0_UsrsEmls (English: 0 - Users Emails / Spanish: 0 - Correos Electrónicos de Usuarios)';
 
+CREATE TABLE IF NOT EXISTS `MIPSS_`.`0_IntrntPrtcl` (
+    `Rfrnc`        INT(255)     NOT NULL AUTO_INCREMENT COMMENT 'Rfrnc        (English: Reference                          / Spanish: Referencia)',
+    `Rfrnc_Usrs`   INT(255)     NOT NULL                COMMENT 'Rfrnc_Usrs   (English: Reference. Users                   / Spanish: Referencia. Usuarios)',
+    `Pblc_V4`      VARCHAR(15)      NULL                COMMENT 'Pblc_V4      (English: Public V4                          / Spanish: Pública V4)',    
+    `Pblc_V6`      VARCHAR(60)      NULL                COMMENT 'Pblc_V6      (English: Public V6                          / Spanish: Pública V6)',    
+    `Prvt_V4`      VARCHAR(15)      NULL                COMMENT 'Prvt_V4      (English: Private V4                         / Spanish: Privada V4)',    
+    `Prvt_V6`      VARCHAR(60)      NULL                COMMENT 'Prvt_V6      (English: Private V6                         / Spanish: Privada V6)',    
+    `Cndtn`        INT    (2)   NOT NULL                COMMENT 'Cndtn        (English: Condition [0: Inactive, 1: Active] / Spanish: Estado [0: Inactivo, 1: Activo])',
+    `Rmvd`         INT    (2)   NOT NULL                COMMENT 'Rmvd         (English: Removed [0: Inactive, 1: Active]   / Spanish: Eliminado [0: Inactivo, 1: Activo])',
+    `Lckd`         INT    (2)   NOT NULL                COMMENT 'Lckd         (English: Locked [0: Inactive, 1: Active]    / Spanish: Bloqueado [0: Inactivo, 1: Activo])',
+    `DtAdmssn`     DATE             NULL                COMMENT 'DtAdmssn     (English: Date of Admission                  / Spanish: Fecha de Ingreso)',
+    `ChckTm`       TIME             NULL                COMMENT 'ChckTm       (English: Check In Time                      / Spanish: Hora de Ingreso)',
+    PRIMARY KEY (`Rfrnc`)
+) ENGINE='InnoDB' DEFAULT CHARSET='utf8' COLLATE='utf8_bin' COMMENT='0_IntrntPrtcl (English: 0 - Internet Protocol / Spanish: 0 - Protocolo de Internet)';
+
 CREATE TABLE IF NOT EXISTS `MIPSS_`.`0_UsrEmlActvtn` (
     `Rfrnc`           INT(255)     NOT NULL AUTO_INCREMENT COMMENT 'Rfrnc           (English: Reference                          / Spanish: Referencia)',
     `Rfrnc_Usrs`      INT(255)     NOT NULL                COMMENT 'Rfrnc_Usrs      (English: Reference. Users                   / Spanish: Referencia. Usuarios)',
@@ -203,8 +218,35 @@ CREATE TABLE IF NOT EXISTS `MIPSS_`.`0_LglPrsns` (
     `DtAdmssn`      DATE             NULL                COMMENT 'DtAdmssn      (English: Date of Admission                  / Spanish: Fecha de Ingreso)',
     `ChckTm`        TIME             NULL                COMMENT 'ChckTm        (English: Check In Time                      / Spanish: Hora de Ingreso)', 
     PRIMARY KEY (`Rfrnc`)
-) ENGINE='InnoDB' DEFAULT CHARSET='utf8' COLLATE='utf8_bin' COMMENT='0_LglPrsns (English: Legal Persons / Spanish: 0 - Personas Jurídicas)';
+) ENGINE='InnoDB' DEFAULT CHARSET='utf8' COLLATE='utf8_bin' COMMENT='0_LglPrsns (English: 0 - Legal Persons / Spanish: 0 - Personas Jurídicas)';
 # <.ENGLISH: LEGAL PERSONS / SPANISH: PERSONAS JURÍDICAS>
+
+# <ENGLISH: COUNTRY / SPANISH: PAÍS>
+CREATE TABLE IF NOT EXISTS `MIPSS_`.`0_Cntry` (
+    `Rfrnc`         INT    (255) NOT NULL AUTO_INCREMENT COMMENT 'Rfrnc         (English: Reference                          / Spanish: Referencia)',
+    `Nm`            VARCHAR(45)  NOT NULL                COMMENT 'Nm            (English: Name                               / Spanish: Nombre)',
+    `Cndtn`         INT    (2)   NOT NULL                COMMENT 'Cndtn         (English: Condition [0: Inactive, 1: Active] / Spanish: Estado    [0: Inactivo, 1: Activo])',
+    `Rmvd`          INT    (2)   NOT NULL                COMMENT 'Rmvd          (English: Removed   [0: Inactive, 1: Active] / Spanish: Eliminado [0: Inactivo, 1: Activo])',
+    `Lckd`          INT    (2)   NOT NULL                COMMENT 'Lckd          (English: Locked    [0: Inactive, 1: Active] / Spanish: Bloqueado [0: Inactivo, 1: Activo])',
+    `DtAdmssn`      DATE             NULL                COMMENT 'DtAdmssn      (English: Date of Admission                  / Spanish: Fecha de Ingreso)',
+    `ChckTm`        TIME             NULL                COMMENT 'ChckTm        (English: Check In Time                      / Spanish: Hora de Ingreso)', 
+    PRIMARY KEY (`Rfrnc`)
+) ENGINE='InnoDB' DEFAULT CHARSET='utf8' COLLATE='utf8_bin' COMMENT='0_Cntry (English: 0 - Country / Spanish: 0 - País)';
+# <.ENGLISH: COUNTRY / SPANISH: PAÍS>
+
+# <ENGLISH: CITIES / SPANISH: CIUDADES>
+CREATE TABLE IF NOT EXISTS `MIPSS_`.`0_Cts` (
+    `Rfrnc`         INT    (255) NOT NULL AUTO_INCREMENT COMMENT 'Rfrnc         (English: Reference                          / Spanish: Referencia)',
+    `Rfrnc_Cntry`   INT    (255)     NULL                COMMENT 'Rfrnc_Cntry   (English: Reference. Country                 / Spanish: Referencia. Pais)',
+    `Nm`            VARCHAR(80)  NOT NULL                COMMENT 'Nm            (English: Name                               / Spanish: Nombre)',
+    `Cndtn`         INT    (2)   NOT NULL                COMMENT 'Cndtn         (English: Condition [0: Inactive, 1: Active] / Spanish: Estado    [0: Inactivo, 1: Activo])',
+    `Rmvd`          INT    (2)   NOT NULL                COMMENT 'Rmvd          (English: Removed   [0: Inactive, 1: Active] / Spanish: Eliminado [0: Inactivo, 1: Activo])',
+    `Lckd`          INT    (2)   NOT NULL                COMMENT 'Lckd          (English: Locked    [0: Inactive, 1: Active] / Spanish: Bloqueado [0: Inactivo, 1: Activo])',
+    `DtAdmssn`      DATE             NULL                COMMENT 'DtAdmssn      (English: Date of Admission                  / Spanish: Fecha de Ingreso)',
+    `ChckTm`        TIME             NULL                COMMENT 'ChckTm        (English: Check In Time                      / Spanish: Hora de Ingreso)', 
+    PRIMARY KEY (`Rfrnc`)
+) ENGINE='InnoDB' DEFAULT CHARSET='utf8' COLLATE='utf8_bin' COMMENT='0_Cts (English: 0 - Cities / Spanish: 0 - Ciudades)';
+# <.ENGLISH: CITIES / SPANISH: CIUDADES>
 
 # --------- <.ENGLISH: MODULE. PERSONS / SPANISH: MÓDULO: PERSONAS> ----------- #
 
@@ -591,4 +633,20 @@ CREATE TABLE IF NOT EXISTS `MIPSS_`.`0_Psts` (
     `ChckTm`        TIME             NULL                COMMENT 'ChckTm        (English: Check In Time                      / Spanish: Hora de Ingreso)', 
     PRIMARY KEY (`Rfrnc`)
 ) ENGINE='InnoDB' DEFAULT CHARSET='utf8' COLLATE='utf8_bin' COMMENT='0_Psts (English: 0 - Posts / Spanish: 0 - Publicaciones)';
+# <.ENGLISH: POSTS / SPANISH: PUBLICACIONES>
+
+# <ENGLISH: IMAGE OF THE POSTS / SPANISH: IMÁGEN DE LAS PUBLICACIONES>
+CREATE TABLE IF NOT EXISTS `MIPSS_`.`0_ImgPsts` (
+    `Rfrnc`         INT    (255) NOT NULL AUTO_INCREMENT COMMENT 'Rfrnc         (English: Reference                          / Spanish: Referencia)',
+    `Rfrnc_Usr`     INT    (255) NOT NULL                COMMENT 'Rfrnc_Prsn    (English: Reference. User                    / Spanish: Referencia. Usuario)',
+    `Rfrnc_Pst`     INT    (255) NOT NULL                COMMENT 'Rfrnc_Pst     (English: Reference. Post                    / Spanish: Referencia. Publicación)',
+    `Nm`            TEXT   (255)     NULL                COMMENT 'Nm            (English: Name                               / Spanish: Nombre)',
+    `Rt`            TEXT         NOT NULL                COMMENT 'Rt            (English: Root                               / Spanish: Ruta)',
+    `Cndtn`         INT    (2)   NOT NULL                COMMENT 'Cndtn         (English: Condition [0: Inactive, 1: Active] / Spanish: Estado    [0: Inactivo, 1: Activo])',
+    `Rmvd`          INT    (2)   NOT NULL                COMMENT 'Rmvd          (English: Removed   [0: Inactive, 1: Active] / Spanish: Eliminado [0: Inactivo, 1: Activo])',
+    `Lckd`          INT    (2)   NOT NULL                COMMENT 'Lckd          (English: Locked    [0: Inactive, 1: Active] / Spanish: Bloqueado [0: Inactivo, 1: Activo])',
+    `DtAdmssn`      DATE             NULL                COMMENT 'DtAdmssn      (English: Date of Admission                  / Spanish: Fecha de Ingreso)',
+    `ChckTm`        TIME             NULL                COMMENT 'ChckTm        (English: Check In Time                      / Spanish: Hora de Ingreso)', 
+    PRIMARY KEY (`Rfrnc`)
+) ENGINE='InnoDB' DEFAULT CHARSET='utf8' COLLATE='utf8_bin' COMMENT='0_ImgPsts (English: 0 - Image Posts / Spanish: 0 - Imágen de las Publicaciones)';
 # <.ENGLISH: POSTS / SPANISH: PUBLICACIONES>
